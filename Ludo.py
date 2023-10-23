@@ -344,21 +344,12 @@ while(executando):
 
     # Movendo Jogador
     if dadoRolado and coordenada is not None and escolha_do_jogador != -1 and pergunta_atual is None:
-            for j in range(len(posição[jogadorAtual])):
-                if posição[jogadorAtual][j][0] <= coordenada[0] <= posição[jogadorAtual][j][0]+31 \
-                        and posição[jogadorAtual][j][1] <= coordenada[1] <= posição[jogadorAtual][j][1]+31:
-                    mover_peça(jogadorAtual, j)
-                    break
+        for j in range(len(posição[jogadorAtual])):
+            if posição[jogadorAtual][j][0] <= coordenada[0] <= posição[jogadorAtual][j][0]+31 \
+                    and posição[jogadorAtual][j][1] <= coordenada[1] <= posição[jogadorAtual][j][1]+31:
+                mover_peça(jogadorAtual, j)
+                break
     
-    # if dadoRolado and coordenada is not None and escolha_do_jogador != -1 and resposta_correta and pergunta_atual is not None:
-    #     for evento in pygame.event.get():  # Verifique eventos novamente após responder à pergunta
-    #         if evento.type == pygame.MOUSEBUTTONUP:
-    #             coordenada = pygame.mouse.get_pos()
-    #             for j in range(len(posição[jogadorAtual])):
-    #                 if posição[jogadorAtual][j][0] <= coordenada[0] <= posição[jogadorAtual][j][0] + 31 \
-    #                         and posição[jogadorAtual][j][1] <= coordenada[1] <= posição[jogadorAtual][j][1] + 31:
-    #                     mover_peça(jogadorAtual, j)
-    #                     resposta_correta = False
 
     blit_tudo()
     

@@ -1,5 +1,5 @@
 import tkinter as tk
-from Ludo import 
+from Ludo import *
 from tkinter import messagebox
 
 # Questões e respostas
