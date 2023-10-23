@@ -53,6 +53,8 @@ peçaMorta = False
 dadoRolado = False
 classificaçãoVencedor = []
 
+jogadores_responderam = [False, False, False, False]
+
 # Renderizando Texto
 fonte = pygame.font.Font('freesansbold.ttf', 11)
 FONT = pygame.font.Font('freesansbold.ttf', 16)
@@ -293,13 +295,11 @@ while(executando):
             if not dadoRolado and (605 <= coordenada[0] <= 669) and (270 <= coordenada[1] <= 334):
                 numero = random.randint(1, 6)
                 
-                if numero == 6:
+                if numero == 6 or jogadores_responderam[jogadorAtual] == True:
                     # Se o dado for 6, defina a pergunta atual
                     pergunta_atual = pergunta1
                     escolha_do_jogador = None
                     cor_atual = cor[jogadorAtual]
-
-                    
 
                 flag = True
                 for i in range(len(posição[jogadorAtual])):
@@ -327,6 +327,7 @@ while(executando):
                     # O jogador escolheu a opção correta, pare de exibir a pergunta
                     pergunta_atual = None
                     dadoRolado = True
+                    jogadores_responderam[jogadorAtual] = True
                 else:
                     # O jogador escolheu a opção incorreta, vá para o próximo jogador
                     jogadorAtual = (jogadorAtual + 1) % 4
@@ -342,13 +343,14 @@ while(executando):
             texto_opcao = fonte.render(f"{i+1}. {opcao}", True, (0, 0, 0))
             screen.blit(texto_opcao, (50, 430 + i * 30))
 
-    # Movendo Jogador
+    #Movendo Jogador
     if dadoRolado and coordenada is not None and escolha_do_jogador != -1 and pergunta_atual is None:
         for j in range(len(posição[jogadorAtual])):
             if posição[jogadorAtual][j][0] <= coordenada[0] <= posição[jogadorAtual][j][0]+31 \
                     and posição[jogadorAtual][j][1] <= coordenada[1] <= posição[jogadorAtual][j][1]+31:
                 mover_peça(jogadorAtual, j)
                 break
+
     
 
     blit_tudo()
